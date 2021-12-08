@@ -1,10 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Student Schedule</title>
 </head>
 <body>
+
+	<select id="subject">
+		<option value="" disabled selected>Select Search Parameter</option>
+		<option value="0">ID</option>
+		<option value="1">Student's First Name</option>
+		<option value="2">Student's Last Name</option>
+		<option value="3">CRN</option>
+		<option value="4">Course Title</option>
+		<option value="5">Teacher</option>
+		<option value="6">Email</option>
+	</select>
+	<input type="text" id="searchInput" onkeyup="selectedSearch()"
+		placeholder="Search">
+		
+		
+	<table id="studentCourseViewTable">
+		<tr>
+			<th>ID</th>
+			<th>Student's First Name</th>
+			<th>Student's Last Name</th>
+			<th>CRN</th>
+			<th>Course Title</th>
+			<th>Teacher</th>
+			<th>Email</th>
+		</tr>
+		<tr th:each="currentStudentCourses, rowStat : ${student}"> 
+			<td th:text="${currentStudentCourses.id}" />
+			<td th:text="${currentStudentCourses.firstName}" />
+			<td th:text="${currentStudentCourses.lastName}" />
+			<td th:text="${currentStudentCourses.course.courseId}" />
+			<td th:text="${currentStudentCourses.course.courseName}" />
+			<td th:text="${currentStudentCourses.course.courseName}" />
+			<td th:text="${currentStudentCourses.course.teacher.lastName}" />
+			<td th:text="${currentStudentCourses.course.teacher.email}" />
+		</tr>
+	</table>
+	
+	<a href="studentCourseView">Return To Course Catalog</a>
+	
+	<script>
+		var menu = document.getElementById("subject");
+		menu.addEventListener("change", selectedSearch);
+
+		function selectedSearch(event) {
+			if (menu.value == '0') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[0];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '1') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[1];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '2') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[2];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '3') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[3];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '4') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[4];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '5') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[5];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '6') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[6];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			}
+			else if (menu.value == '7') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentCourseViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[7];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			}
+		}
+	</script>
 
 </body>
 </html>
