@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dmacc.beans.Course;
+import dmacc.beans.Student;
 import dmacc.beans.Teacher;
 
 /**
@@ -24,6 +25,12 @@ public class BeanConfiguration {
 	@Bean
 	public Teacher teacher() {
 		Teacher bean = new Teacher();
+		return bean;
+	}
+	
+	@Bean
+	public Student student() {
+		Student bean = new Student();
 		return bean;
 	}
 

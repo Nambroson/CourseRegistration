@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +28,8 @@ public class Student {
 	private String lastName;
 	//Error Could not determine type for: java.util.List, at table: student, for columns: [org.hibernate.mapping.Column(courses)]
 	//private List<Course> courses;
+	@Autowired
+	private Course course;
 	
 	public Student(long id, String firstName, String lastName) {
 		this.id = id;
