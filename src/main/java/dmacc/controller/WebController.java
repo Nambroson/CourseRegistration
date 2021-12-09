@@ -150,10 +150,23 @@ public class WebController {
 	@GetMapping("/addToSchedule/{id}")
 	public String addCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
+		c.addStudent();
+		repo.save(c);
 		StudentCourse sc = new StudentCourse(c.getId(), c.getCourseId(), c.getCourseName(), c.getTeacher());
 		studentRepo.save(sc);
 		return viewStudentCourses(model);
 	}//end addCourse
+	
+	//drop course function
+	@GetMapping("/dropCourse/{id}")
+	public String dropCourse(@PathVariable("id") long id, Model model) {
+		StudentCourse sc = studentRepo.findById(id).orElse(null);
+		Course c = repo.findById(id).orElse(null);
+		c.removeStudent();
+		repo.save(c);
+		studentRepo.delete(sc);
+		return viewStudentCourses(model);
+	}//end dropCourse
 	
 	/*
 	//add duplicate method
