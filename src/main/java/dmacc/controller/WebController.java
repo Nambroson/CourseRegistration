@@ -6,6 +6,8 @@
  */
 package dmacc.controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +80,11 @@ public class WebController {
 	
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
+		StudentCourse sc = studentRepo.findById(id).orElse(null);
+		System.out.print(sc.toString());
+		if (!Objects.isNull(sc)) {
+			studentRepo.delete(sc);
+		}//end if
 		repo.delete(c);
 		return viewAllCourses(model);
 	}//end deleteCourse
@@ -150,8 +157,10 @@ public class WebController {
 	@GetMapping("/addToSchedule/{id}")
 	public String addCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
-		c.addStudent();
-		repo.save(c);
+		if (!Objects.isNull(c)) {
+			c.addStudent();
+			repo.save(c);
+		}//end if
 		StudentCourse sc = new StudentCourse(c.getId(), c.getCourseId(), c.getCourseName(), c.getTeacher());
 		studentRepo.save(sc);
 		return viewStudentCourses(model);
@@ -162,8 +171,10 @@ public class WebController {
 	public String dropCourse(@PathVariable("id") long id, Model model) {
 		StudentCourse sc = studentRepo.findById(id).orElse(null);
 		Course c = repo.findById(id).orElse(null);
-		c.removeStudent();
-		repo.save(c);
+		if (!Objects.isNull(c)) {
+			c.removeStudent();
+			repo.save(c);
+		}//end if
 		studentRepo.delete(sc);
 		return viewStudentCourses(model);
 	}//end dropCourse

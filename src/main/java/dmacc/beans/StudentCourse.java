@@ -27,11 +27,11 @@ import lombok.NoArgsConstructor;
 public class StudentCourse {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String courseId;
 	private String courseName;
 	@Autowired
 	private Teacher teacher;
-
+	
 }//end StudentCourse
