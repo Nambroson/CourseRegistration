@@ -8,7 +8,7 @@
 
 th {
 	cursor: pointer;
-	background-color: #87CEEB;
+	background-color: lightblue;
 	color: black;
 	font-weight: bold;
 	font-size: 110%;
@@ -25,32 +25,13 @@ tr:nth-child(odd) {
 	text-align: left;
 }
 
-a.return {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-   background: green;
-   padding: 3px 7px;
-   border-radius: 20px;
-   color: white;
-   font-size: 12px;
-   font-family: Helvetica, Arial, Sans-Serif;
-   vertical-align: middle;
+table {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-a.schedule {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-   background: khaki;
-   padding: 3px 7px;
-   border-radius: 20px;
-   color: white;
-   font-size: 12px;
-   font-family: Helvetica, Arial, Sans-Serif;
-   vertical-align: middle;
+td {
+	padding: 10px 30px;
 }
 
 a.enroll {
@@ -58,17 +39,95 @@ a.enroll {
     -moz-appearance: button;
     appearance: button;
     text-decoration: none;
-   background: lightgreen;
+   background: olivedrab;
    padding: 3px 7px;
    border-radius: 20px;
    color: white;
    font-size: 12px;
    font-family: Helvetica, Arial, Sans-Serif;
    vertical-align: middle;
+   border: 1px solid gray;
+}
+
+a.schedule {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkkhaki;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 13px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
+}
+
+a.return {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkseagreen;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 13px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
+}
+
+select {
+	border-radius: 5px;
+	padding: 2px;
+}
+
+input {
+	border-radius: 5px;
+	padding: 2px;
+}
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 0;
+}
+
+h2 {
+	margin-top: 0;
+	margin-bottom: 30px;
+	color: gray;
+}
+
+select {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+input {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+option {
+	font-family: 'Times New Roman';
+	font-size: 15px;
 }
 </style>
 </head>
 <body>
+	<h1>Available Courses</h1>
+	<h2>Student View</h2>
+	
 	<select id="subject">
 		<option value="" disabled selected>Select Search Parameter</option>
 		<option value="0">ID</option>
@@ -88,6 +147,7 @@ a.enroll {
 			<th>Course Title</th>
 			<th>Teacher</th>
 			<th>Email</th>
+			<th>Options</th>
 		</tr>
 		<tr th:each="currentCourses, rowStat : ${courses}"> 
 			<td th:text="${currentCourses.id}" />

@@ -8,7 +8,7 @@
 
 th {
 	cursor: pointer;
-	background-color: #87CEEB;
+	background-color: lightblue;
 	color: black;
 	font-weight: bold;
 	font-size: 110%;
@@ -25,18 +25,43 @@ tr:nth-child(odd) {
 	text-align: left;
 }
 
+table {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+td {
+	padding: 10px 30px;
+}
+
 a.return {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
     text-decoration: none;
-   background: green;
+   background: darkseagreen;
    padding: 3px 7px;
    border-radius: 20px;
    color: white;
-   font-size: 12px;
+   font-size: 13px;
    font-family: Helvetica, Arial, Sans-Serif;
    vertical-align: middle;
+   border: 1px solid gray;
+}
+
+a.catalog {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkkhaki;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 13px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
 }
 
 a.drop {
@@ -44,19 +69,44 @@ a.drop {
     -moz-appearance: button;
     appearance: button;
     text-decoration: none;
-   background: red;
+   background: indianred;
    padding: 3px 7px;
    border-radius: 20px;
    color: white;
    font-size: 12px;
    font-family: Helvetica, Arial, Sans-Serif;
    vertical-align: middle;
+   border: 1px solid gray;
 }
 
+select {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+input {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+option {
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
 </style>
 
 </head>
 <body>
+
+	<h1>Student Schedule</h1>
 
 	<select id="subject">
 		<option value="" disabled selected>Select Search Parameter</option>
@@ -81,6 +131,7 @@ a.drop {
 			<th>Course Title</th>
 			<th>Teacher</th>
 			<th>Email</th>
+			<th>Options</th>
 		</tr>
 		<tr th:each="currentStudentCourses, rowStat : ${course}"> 
 			<!--  <td th:text="${currentStudentCourses.student.id}" />
@@ -95,7 +146,8 @@ a.drop {
 		</tr>
 	</table>
 	
-	<a href="/studentCourseView" class="return">Return To Course Catalog</a>
+	<a href="/loginpage" class="return">Return To Login</a>
+	<a href="/studentCourseView" class="catalog">Return To Course Catalog</a>
 	
 	<script>
 		var menu = document.getElementById("subject");
