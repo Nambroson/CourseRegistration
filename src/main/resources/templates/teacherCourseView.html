@@ -3,8 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <title>View All Courses - Teacher</title>
+
+<style>
+
+th {
+	cursor: pointer;
+	background-color: lightblue;
+	color: black;
+	font-weight: bold;
+	font-size: 110%;
+	font-style: normal;
+	text-align: center;
+	vertical-align: center;
+}
+
+tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+.tableContents {
+	text-align: left;
+}
+
+table {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+td {
+	padding: 10px 30px;
+}
+
+.button buttonAdd {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: green;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.editButton {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: khaki;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.deleteButton {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: red;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.return {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkseagreen;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 13px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
+}
+
+select {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+input {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 0;
+}
+
+h2 {
+	margin-top: 0;
+	margin-bottom: 30px;
+	color: gray;
+}
+
+option {
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+</style>
 </head>
 <body>
+	<h1>Available Courses</h1>
+	<h2>Teacher View</h2>
+	
 	<select id="subject">
 		<option value="" disabled selected>Select Search Parameter</option>
 		<option value="0">ID</option>
@@ -25,17 +146,19 @@
 				<th>Students Enrolled</th>
 				<th>Teacher</th>
 				<th>Email</th>
+				<th> </th>
+				<th> </th>
 			</tr>
 			<tr th:each="currentCourses, rowStat : ${courses}">
 				<td th:text="${currentCourses.id}" />
 				<td th:text="${currentCourses.courseId}" />
 				<td th:text="${currentCourses.courseName}" />
-				<td th:text="${currentCourses.studentsEnrolled}" />
+				<td th:text="${currentCourses.studentsEnrolled}" style="text-align: center"/>
 				<td th:text="${currentCourses.teacher.lastName}" />
 				<td th:text="${currentCourses.teacher.email}" />
 
-				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</a></td>
+				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}" class="editButton">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}" class="deleteButton">Delete</a></td>
 			</tr>
 		</table>
 	</form>
@@ -168,6 +291,6 @@
 			}
 		}
 	</script>
-	<a href="/loginpage">Return To Login</a>
+	<a href="/loginpage" class="return">Return To Login</a>
 </body>
 </html>
