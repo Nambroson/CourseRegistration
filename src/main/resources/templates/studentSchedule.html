@@ -30,13 +30,13 @@
 			<th>Teacher</th>
 			<th>Email</th>
 		</tr>
-		<tr th:each="currentStudentCourses, rowStat : ${student}"> 
-			<td th:text="${currentStudentCourses.id}" />
-			<td th:text="${currentStudentCourses.firstName}" />
-			<td th:text="${currentStudentCourses.lastName}" />
-			<td th:text="${currentStudentCourses.course.courseId}" />
-			<td th:text="${currentStudentCourses.course.courseName}" />
-			<td th:text="${currentStudentCourses.course.courseName}" />
+		<tr th:each="currentStudentCourses, rowStat : ${course}"> 
+			<td th:text="${currentStudentCourses.student.id}" />
+			<td th:text="${currentStudentCourses.student.firstName}" />
+			<td th:text="${currentStudentCourses.student.lastName}" />
+			<td th:text="${currentStudentCourses.courseId}" />
+			<td th:text="${currentStudentCourses.courseName}" />
+			<td th:text="${currentStudentCourses.courseName}" />
 			<td th:text="${currentStudentCourses.course.teacher.lastName}" />
 			<td th:text="${currentStudentCourses.course.teacher.email}" />
 		</tr>

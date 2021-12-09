@@ -9,10 +9,15 @@
  */
 package dmacc.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,6 +34,8 @@ public class Course {
 	@Autowired
 	private Teacher teacher;
 	private int studentsEnrolled;
+	@OneToMany(targetEntity=Student.class, mappedBy="course", fetch=FetchType.EAGER)
+	private List<Student> student;
 	//private final int COURSEMAX = 15;
 	//private final int COURSEMIN = 5;
 	//private int courseApplied;
@@ -127,6 +134,15 @@ public class Course {
 				+ "]";
 	}
 	
+/*
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	*/
 	
 	
 	
