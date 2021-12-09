@@ -16,12 +16,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Course;
 import dmacc.beans.Student;
+import dmacc.beans.StudentCourse;
 import dmacc.repository.CourseRegistrationRepository;
+import dmacc.repository.StudentCourses;
 
 @Controller
 public class WebController {
 	@Autowired
 	CourseRegistrationRepository repo;
+	
+	@Autowired
+	StudentCourses studentRepo;
 	
 	@GetMapping({"/", "loginpage"})
 	public String loginpage(Model model) {
@@ -130,6 +135,25 @@ public class WebController {
 		repo.save(c);
 		return viewAllCourses(model);
 	}
+	
+	//view courses student has signed up for
+	@GetMapping({"/studentCourses"})
+	public String viewStudentCourses(Model model) {
+		if(studentRepo.findAll().isEmpty()) {
+			return studentViewCourses(model);
+		}
+		model.addAttribute("course", studentRepo.findAll());
+		return "studentSchedule";
+	}//end viewStudentCourses
+	
+	//add course to student course list
+	@GetMapping("/addToSchedule/{id}")
+	public String addCourse(@PathVariable("id") long id, Model model) {
+		Course c = repo.findById(id).orElse(null);
+		StudentCourse sc = new StudentCourse(c.getId(), c.getCourseId(), c.getCourseName(), c.getTeacher());
+		studentRepo.save(sc);
+		return viewStudentCourses(model);
+	}//end addCourse
 	
 	/*
 	//add duplicate method

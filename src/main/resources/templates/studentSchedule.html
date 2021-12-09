@@ -23,26 +23,26 @@
 	<table id="studentCourseViewTable">
 		<tr>
 			<th>ID</th>
-			<th>Student's First Name</th>
-			<th>Student's Last Name</th>
+			<!-- <th>Student's First Name</th>
+			<th>Student's Last Name</th> -->
 			<th>CRN</th>
 			<th>Course Title</th>
 			<th>Teacher</th>
 			<th>Email</th>
 		</tr>
 		<tr th:each="currentStudentCourses, rowStat : ${course}"> 
-			<td th:text="${currentStudentCourses.student.id}" />
+			<!--  <td th:text="${currentStudentCourses.student.id}" />
 			<td th:text="${currentStudentCourses.student.firstName}" />
-			<td th:text="${currentStudentCourses.student.lastName}" />
+			<td th:text="${currentStudentCourses.student.lastName}" /> -->
+			<td th:text="${currentStudentCourses.id}" />
 			<td th:text="${currentStudentCourses.courseId}" />
 			<td th:text="${currentStudentCourses.courseName}" />
-			<td th:text="${currentStudentCourses.courseName}" />
-			<td th:text="${currentStudentCourses.course.teacher.lastName}" />
-			<td th:text="${currentStudentCourses.course.teacher.email}" />
+			<td th:text="${currentStudentCourses.teacher.lastName}" />
+			<td th:text="${currentStudentCourses.teacher.email}" />
 		</tr>
 	</table>
 	
-	<a href="studentCourseView">Return To Course Catalog</a>
+	<a href="/studentCourseView">Return To Course Catalog</a>
 	
 	<script>
 		var menu = document.getElementById("subject");
