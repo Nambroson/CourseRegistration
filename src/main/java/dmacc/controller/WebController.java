@@ -81,7 +81,6 @@ public class WebController {
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
 		StudentCourse sc = studentRepo.findById(id).orElse(null);
-		System.out.print(sc.toString());
 		if (!Objects.isNull(sc)) {
 			studentRepo.delete(sc);
 		}//end if
