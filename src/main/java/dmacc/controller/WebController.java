@@ -81,7 +81,6 @@ public class WebController {
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
 		StudentCourse sc = studentRepo.findById(id).orElse(null);
-		System.out.print(sc.toString());
 		if (!Objects.isNull(sc)) {
 			studentRepo.delete(sc);
 		}//end if
@@ -155,7 +154,7 @@ public class WebController {
 	
 	//add course to student course list
 	@GetMapping("/addToSchedule/{id}")
-	public String addCourse(@PathVariable("id") long id, @PathVariable long studentId, Model model) {
+	public String addCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
 		if (!Objects.isNull(c)) {
 			c.addStudent();
