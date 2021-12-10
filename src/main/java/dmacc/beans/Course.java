@@ -34,8 +34,8 @@ public class Course {
 	@Autowired
 	private Teacher teacher;
 	private int studentsEnrolled;
-	@OneToMany(targetEntity=Student.class, mappedBy="course", fetch=FetchType.EAGER)
-	private List<Student> student;
+	//@OneToMany(targetEntity=Student.class, mappedBy="course", fetch=FetchType.EAGER)
+	//private List<Student> student;
 	//private final int COURSEMAX = 15;
 	//private final int COURSEMIN = 5;
 	//private int courseApplied;

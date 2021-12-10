@@ -26,7 +26,16 @@ tr:nth-child(odd) {
 	text-align: left;
 }
 
-a.addButton{
+table {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+td {
+	padding: 10px 20px;
+}
+
+a.addButton {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -40,7 +49,7 @@ a.addButton{
    vertical-align: middle;
 }
 
-a.editButton{
+a.editButton {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -54,7 +63,7 @@ a.editButton{
    vertical-align: middle;
 }
 
-a.deleteButton{
+a.deleteButton {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -68,7 +77,7 @@ a.deleteButton{
    vertical-align: middle;
 }
 
-a.addStudentButton{
+a.addStudentButton {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -82,7 +91,7 @@ a.addStudentButton{
    vertical-align: middle;
 }
 
-a.deleteStudentButton{
+a.deleteStudentButton {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -96,11 +105,54 @@ a.deleteStudentButton{
    vertical-align: middle;
 }
 
+a.return {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkseagreen;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
 
+select {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
 
+input {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
 
+h1 {
+	font-size: 40px;
+	margin-bottom: 0;
+}
+
+h2 {
+	margin-top: 0;
+	margin-bottom: 30px;
+	color: gray;
+}
+
+option {
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
 </style>
 <body>
+	<h1>Available Courses</h1>
+	<h2>Administrator View</h2>
+	
 	<select id="subject">
 		<option value="" disabled selected>Select Search Parameter</option>
 		<option value="0">ID</option>
@@ -121,6 +173,10 @@ a.deleteStudentButton{
 				<th>Students Enrolled</th>
 				<th>Teacher</th>
 				<th>Email</th>
+				<th> </th>
+				<th> </th>
+				<th> </th>
+				<th> </th>
 			</tr>
 			</thead>
 			<tbody>
@@ -142,7 +198,7 @@ a.deleteStudentButton{
 	</form>
 	
 	<a href="../inputCourse" class = "addButton">Add Course</a>
-	<a href="/loginpage" >Return To Login</a>
+	<a href="/loginpage" class="return">Return To Login</a>
 
 	<script>
 	

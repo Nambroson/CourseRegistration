@@ -6,6 +6,8 @@
  */
 package dmacc.controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +18,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Course;
 import dmacc.beans.Student;
+import dmacc.beans.StudentCourse;
 import dmacc.repository.CourseRegistrationRepository;
+import dmacc.repository.StudentCourses;
 
 @Controller
 public class WebController {
 	@Autowired
 	CourseRegistrationRepository repo;
+	
+	@Autowired
+	StudentCourses studentRepo;
 	
 	@GetMapping({"/", "loginpage"})
 	public String loginpage(Model model) {
@@ -73,6 +80,11 @@ public class WebController {
 	
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
+		StudentCourse sc = studentRepo.findById(id).orElse(null);
+		System.out.print(sc.toString());
+		if (!Objects.isNull(sc)) {
+			studentRepo.delete(sc);
+		}//end if
 		repo.delete(c);
 		return viewAllCourses(model);
 	}//end deleteCourse
@@ -130,6 +142,42 @@ public class WebController {
 		repo.save(c);
 		return viewAllCourses(model);
 	}
+	
+	//view courses student has signed up for
+	@GetMapping({"/studentCourses"})
+	public String viewStudentCourses(Model model) {
+		if(studentRepo.findAll().isEmpty()) {
+			return studentViewCourses(model);
+		}
+		model.addAttribute("course", studentRepo.findAll());
+		return "studentSchedule";
+	}//end viewStudentCourses
+	
+	//add course to student course list
+	@GetMapping("/addToSchedule/{id}")
+	public String addCourse(@PathVariable("id") long id, @PathVariable long studentId, Model model) {
+		Course c = repo.findById(id).orElse(null);
+		if (!Objects.isNull(c)) {
+			c.addStudent();
+			repo.save(c);
+		}//end if
+		StudentCourse sc = new StudentCourse(c.getId(), c.getCourseId(), c.getCourseName(), c.getTeacher());
+		studentRepo.save(sc);
+		return viewStudentCourses(model);
+	}//end addCourse
+	
+	//drop course function
+	@GetMapping("/dropCourse/{id}")
+	public String dropCourse(@PathVariable("id") long id, Model model) {
+		StudentCourse sc = studentRepo.findById(id).orElse(null);
+		Course c = repo.findById(id).orElse(null);
+		if (!Objects.isNull(c)) {
+			c.removeStudent();
+			repo.save(c);
+		}//end if
+		studentRepo.delete(sc);
+		return viewStudentCourses(model);
+	}//end dropCourse
 	
 	/*
 	//add duplicate method

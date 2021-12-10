@@ -3,8 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <title>Student Schedule</title>
+
+<style>
+
+th {
+	cursor: pointer;
+	background-color: lightblue;
+	color: black;
+	font-weight: bold;
+	font-size: 110%;
+	font-style: normal;
+	text-align: center;
+	vertical-align: center;
+}
+
+tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+.tableContents {
+	text-align: left;
+}
+
+table {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+td {
+	padding: 10px 20px;
+}
+
+a.return {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkseagreen;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 13px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
+}
+
+a.catalog {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: darkkhaki;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 13px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
+}
+
+a.drop {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: indianred;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+   border: 1px solid gray;
+}
+
+select {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+input {
+	border-radius: 5px;
+	padding: 2px;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+option {
+	font-family: 'Times New Roman';
+	font-size: 15px;
+}
+</style>
+
 </head>
 <body>
+
+	<h1>Student Schedule</h1>
 
 	<select id="subject">
 		<option value="" disabled selected>Select Search Parameter</option>
@@ -23,26 +125,29 @@
 	<table id="studentCourseViewTable">
 		<tr>
 			<th>ID</th>
-			<th>Student's First Name</th>
-			<th>Student's Last Name</th>
+			<!-- <th>Student's First Name</th>
+			<th>Student's Last Name</th> -->
 			<th>CRN</th>
 			<th>Course Title</th>
 			<th>Teacher</th>
 			<th>Email</th>
+			<th>Options</th>
 		</tr>
 		<tr th:each="currentStudentCourses, rowStat : ${course}"> 
-			<td th:text="${currentStudentCourses.student.id}" />
+			<!--  <td th:text="${currentStudentCourses.student.id}" />
 			<td th:text="${currentStudentCourses.student.firstName}" />
-			<td th:text="${currentStudentCourses.student.lastName}" />
+			<td th:text="${currentStudentCourses.student.lastName}" /> -->
+			<td th:text="${currentStudentCourses.id}" />
 			<td th:text="${currentStudentCourses.courseId}" />
 			<td th:text="${currentStudentCourses.courseName}" />
-			<td th:text="${currentStudentCourses.courseName}" />
-			<td th:text="${currentStudentCourses.course.teacher.lastName}" />
-			<td th:text="${currentStudentCourses.course.teacher.email}" />
+			<td th:text="${currentStudentCourses.teacher.lastName}" />
+			<td th:text="${currentStudentCourses.teacher.email}" />
+			<td><a th:href="@{/dropCourse/{id}(id=${currentStudentCourses.id})}" class = "drop">Drop Course</a></td>
 		</tr>
 	</table>
 	
-	<a href="studentCourseView">Return To Course Catalog</a>
+	<a href="/loginpage" class="return">Return To Login</a>
+	<a href="/studentCourseView" class="catalog">Return To Course Catalog</a>
 	
 	<script>
 		var menu = document.getElementById("subject");
