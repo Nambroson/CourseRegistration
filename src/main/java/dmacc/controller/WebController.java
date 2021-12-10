@@ -155,7 +155,7 @@ public class WebController {
 	
 	//add course to student course list
 	@GetMapping("/addToSchedule/{id}")
-	public String addCourse(@PathVariable("id") long id, @PathVariable long studentId, Model model) {
+	public String addCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
 		if (!Objects.isNull(c)) {
 			c.addStudent();
